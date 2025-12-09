@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6e5588cc-a62f-4fc6-bc56-192a4a4260c2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Projet M1/coral/pycoral/examples/install_requirements.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Projet M1/coral/pycoral/examples/install_requirements.sh" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Projet M1/coral/pycoral" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2iho2BRyP4RsOPerajQWgr5tSOs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Add_files.executor": "Run",
+    "Python.Analyse_faciale_v3.executor": "Run",
+    "Python.Audio.executor": "Run",
+    "Python.FrameActivities.executor": "Run",
+    "Python.FrameDetectingMood_extra.executor": "Run",
+    "Python.FrameDiscussion.executor": "Debug",
+    "Python.FrameEachActivity.executor": "Run",
+    "Python.FrameParameters.executor": "Run",
+    "Python.FrameProfilUser.executor": "Run",
+    "Python.Main_UI.executor": "Run",
+    "Python.Objet.executor": "Run",
+    "Python.Personne.executor": "Run",
+    "Python.Photo.executor": "Run",
+    "Python.Reponse_verbale.executor": "Run",
+    "Python.Visage.executor": "Run",
+    "Python.rasB_Cam.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/mdrro/OneDrive - Efrei/Documents/8. S8/Master Project/Code/Projet M1/Source",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mdrro\OneDrive - Efrei\Documents\8. S8\Master Project\Code\Projet M1\Source" />
+      <recent name="C:\Users\mdrro\OneDrive - Efrei\Documents\8. S8\Master Project\Code\Projet M1\Source\Models" />
+      <recent name="C:\Users\mdrro\OneDrive - Efrei\Documents\8. S8\Master Project\Code\Projet M1\Source\Items" />
+      <recent name="C:\Users\mdrro\OneDrive - Efrei\Documents\8. S8\Master Project\Code\Projet M1\Depress_Robot\JOY-App_UI" />
+      <recent name="C:\Users\mdrro\OneDrive - Efrei\Documents\8. S8\Master Project\Code\Projet M1\Depress_Robot\JOY-App_UI\Source\Face" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mdrro\OneDrive - Efrei\Documents\8. S8\Master Project\Code\Projet M1" />
+      <recent name="C:\Users\mdrro\OneDrive - Efrei\Documents\8. S8\Master Project\Code\Projet M1\Depress_Robot" />
+      <recent name="C:\Users\mdrro\OneDrive - Efrei\Documents\8. S8\Master Project\Code\Projet M1\Depress_Robot\JOY-App_UI\Source\Items" />
+      <recent name="C:\Users\mdrro\OneDrive - Efrei\Documents\8. S8\Master Project\Code\Projet M1\Depress_Robot\JOY-App_UI\Source" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e5588cc-a62f-4fc6-bc56-192a4a4260c2" name="Changes" comment="" />
+      <created>1719951963637</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1719951963637</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

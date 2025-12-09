@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="481b8db6-5c76-4d24-8ab0-7defbdc296d3" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/coral/pycoral" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2djma1UP18L38zHtLfPVHgyoVRq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Add_files.executor": "Run",
+    "Python.Ajout_entrainement.executor": "Run",
+    "Python.Analyse_faciale.executor": "Run",
+    "Python.Analyse_faciale_v2.executor": "Run",
+    "Python.Analyse_faciale_v3.executor": "Run",
+    "Python.Confustion_matrix.executor": "Run",
+    "Python.Entrainement.executor": "Run",
+    "Python.Entrainement_Emotion.executor": "Run",
+    "Python.Entrainement_Face.executor": "Run",
+    "Python.Face_Recognition.executor": "Run",
+    "Python.Face_Recognition_exe.executor": "Run",
+    "Python.History.executor": "Run",
+    "Python.Interface.executor": "Run",
+    "Python.Machine_Learning(emotion_recognition).executor": "Run",
+    "Python.Machine_Learning(emotion_recognition)User.executor": "Run",
+    "Python.Machine_Learning(emotion_recognition)User_V2.executor": "Run",
+    "Python.Machine_Learning(emotion_recognition)_V2.executor": "Run",
+    "Python.Machine_Learning.executor": "Run",
+    "Python.POC.executor": "Run",
+    "Python.P_O_C.executor": "Run",
+    "Python.Photo.executor": "Run",
+    "Python.Reconnaissance_faciale V2.executor": "Run",
+    "Python.Reconnaissance_faciale.executor": "Run",
+    "Python.ReglageCamera.executor": "Run",
+    "Python.Take_photo.executor": "Run",
+    "Python.Test(Conv2D).executor": "Run",
+    "Python.Test.executor": "Run",
+    "Python.Teste.executor": "Run",
+    "Python.UI copy.executor": "Run",
+    "Python.UI copy_2.executor": "Run",
+    "Python.UI.executor": "Run",
+    "Python.new_file.executor": "Run",
+    "Python.robot_perso.executor": "Run",
+    "Python.take_photo.executor": "Run",
+    "Python.testeuh.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/mdrro/Downloads/JOY-App_UI",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PRO\Projet M1\Depress_Robot" />
+      <recent name="D:\PRO\Projet M1\Depress_Robot\Machine Learning" />
+      <recent name="D:\PRO\Projet M1\Depress_Robot\AI &amp; ROS" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PRO\Projet M1\Depress_Robot\Source\Models" />
+      <recent name="D:\PRO\Projet M1\Depress_Robot" />
+      <recent name="D:\PRO\Projet M1\Depress_Robot\AI &amp; ROS" />
+      <recent name="D:\PRO\Robot dépressif\Dataset\1. Tristesse" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="481b8db6-5c76-4d24-8ab0-7defbdc296d3" name="Changes" comment="" />
+      <created>1710529922912</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710529922912</updated>
+    </task>
+    <servers />
+  </component>
+</project>
