@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Importing
+# Importing branch chatbot
 import tkinter as tk
 import random
 import datetime
