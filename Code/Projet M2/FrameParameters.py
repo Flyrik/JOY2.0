@@ -80,20 +80,22 @@ class FrameParameters(tk.Frame):
     def On_Off_face(self):
         on_off = open("Source/Face/face.txt").readlines()
         if on_off[0][:3].strip() == "on":
+            self.face_button.configure(text="OFF", bg="#ff0000")
             on_off[0] = f"off {on_off[0][-4:].strip()}\n"
             if "notif" in self.master.logo_img:
                 self.master.logo_img = "Source/Items/logo_notif_off.png"
             else:
                 self.master.logo_img = "Source/Items/logo_off.png"
-            self.face_button.configure(text="OFF", bg="#ff0000")
+            
         else:
             on_off[0] = f"on {on_off[0][-4:].strip()}\n"
+            self.face_button.configure(text="ON", bg="#00ff00")
             if "notif" in self.master.logo_img:
                 self.master.logo_img = "Source/Items/logo_notif_on.png"
-                self.face_button.configure(text="OFF", bg="#ff0000")
+                ##self.face_button.configure(text="OFF", bg="#ff0000")
             else:
                 self.master.logo_img = "Source/Items/logo_on.png"
-                self.face_button.configure(text="ON", bg="#00ff00")
+                
         self.master.photo1 = tk.PhotoImage(file=self.master.logo_img)
         self.master.butt_logo.configure(image=self.master.photo1)
         open("Source/Face/face.txt", 'w').writelines(on_off)

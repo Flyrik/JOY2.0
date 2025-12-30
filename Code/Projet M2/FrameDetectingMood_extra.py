@@ -9,8 +9,17 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image, ImageTk
 from datetime import datetime
+import keras
 
 import capteur_BPM
+
+
+# Custom DepthwiseConv2D to handle deprecated 'groups' parameter
+class CustomDepthwiseConv2D(keras.layers.DepthwiseConv2D):
+    def __init__(self, *args, **kwargs):
+        # Remove 'groups' parameter if present (deprecated in newer Keras)
+        kwargs.pop('groups', None)
+        super().__init__(*args, **kwargs)
 
 
 # Page de détection des émotions sur 15 seconds
@@ -57,10 +66,13 @@ class FrameDetectingMood(tk.Frame):
         if not os.path.exists("Source/Models"):
             os.makedirs("Source/Models")
 
+        # Load model with custom objects to handle deprecated parameters
+        custom_objects = {'DepthwiseConv2D': CustomDepthwiseConv2D}
+        
         if os.path.exists("Source/Models/new_model.h5"):
-            self.loaded_model = tf.keras.models.load_model(f"Source/Models/new_model.h5")
+            self.loaded_model = tf.keras.models.load_model(f"Source/Models/new_model.h5", custom_objects=custom_objects)
         else:
-            self.loaded_model = tf.keras.models.load_model(f"Source/Models/model2.h5")
+            self.loaded_model = tf.keras.models.load_model(f"Source/Models/model2.h5", custom_objects=custom_objects)
         self.emotion = ""
         self.emotions = [0 for _ in self.Emotions]
         self.global_emotion = ""
