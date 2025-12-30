@@ -122,11 +122,12 @@ class Reconnaissance:
 
 
 if __name__ == '__main__':
-    face = 'source/face.xml'
-    eye = 'source/eye_glasses.xml'
-    mouth = 'source/mouth.xml'
+    # Using OpenCV's built-in Haar Cascade classifiers
+    face = cv2.data.haarcascades + 'haarcascade_frontalface_default.xml'
+    eye = cv2.data.haarcascades + 'haarcascade_eye.xml'
+    mouth = cv2.data.haarcascades + 'haarcascade_smile.xml'
 
-    model_face = 'source/model.h5'
+    model_face = 'Source/Models/model_face.h5'
     Classes = ["Asma", "Clorinda", "Médéric", "Pierre", "Sarah"]
 
     reco = Reconnaissance(classifiers=[face, eye, mouth], models=[model_face, "", ""], classes=[Classes, "", ""])
