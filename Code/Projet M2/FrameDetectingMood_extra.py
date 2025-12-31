@@ -82,19 +82,34 @@ class FrameDetectingMood(tk.Frame):
     # Affiche la caméra
     # Met à jour le label de l'émotion
     def show_camera(self, counter=5):
-        cnt = 0
-        time_now = datetime.now().second
-        while True:
-            ret, frame = self.cap.read()
-            cnt, time_now = self.update_emotion(ret, frame, cnt, counter, time_now)
+        ##cnt = 0
+        ##time_now = datetime.now().second
+        ##while True:
+            ##ret, frame = self.cap.read()
+            ##cnt, time_now = self.update_emotion(ret, frame, cnt, counter, time_now)
+            ##frame = imutils.resize(frame, width=400)
+            ##cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+            ##img = Image.fromarray(cv2image)
+            ##imgtk = ImageTk.PhotoImage(image=img)
+            ##self.camera_label.imgtk = imgtk
+            ##self.camera_label.configure(image=imgtk)
+            ##if not self.cap.isOpened():
+                ##break
+        ret, frame = self.cap.read()
+        if ret:
+            self.cnt, self.time_now = self.update_emotion(ret, frame, self.cnt, counter, self.time_now)
             frame = imutils.resize(frame, width=400)
             cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
             img = Image.fromarray(cv2image)
             imgtk = ImageTk.PhotoImage(image=img)
             self.camera_label.imgtk = imgtk
             self.camera_label.configure(image=imgtk)
-            if not self.cap.isOpened():
-                break
+
+        if self.cnt < counter:
+            # rappeler la fonction après 50 ms sans bloquer Tkinter
+            self.after(50, self.show_camera_non_blocking, counter)
+        else:
+            self.stop_camera()
 
     # Prédit l'émotion
     def update_emotion(self, ret, frame, count, counter, time_now):
@@ -204,6 +219,9 @@ class FrameDetectingMood(tk.Frame):
             self.grid(row=1, rowspan=10, column=0, sticky="nsew")
             # On remet correctement les widgets
             self.cap = cv2.VideoCapture(0)
+            if not self.cap.isOpened():
+                messagebox.showerror("Erreur", "Impossible d'ouvrir la caméra")
+                return
 
             self.show_camera()
             # self.update_emotion()
