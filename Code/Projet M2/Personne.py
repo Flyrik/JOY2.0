@@ -6,7 +6,7 @@ path_people = "Source/People_set"
 
 
 class Personne:
-    def __init__(self, lien=None, first_name=None, last_name=None, age=None, genre=None, physique=None, anecdote=None):
+    def __init__(self, lien=None, first_name=None, last_name=None, age=None, genre=None, physique=None, anecdote=None, taille=None, couleur=None, yeux=None):
         self.lien = lien
         self.first_name = first_name
         self.last_name = last_name
@@ -14,6 +14,9 @@ class Personne:
         self.genre = genre
         self.physique = physique
         self.anecdote = anecdote
+        self.taille = taille
+        self.couleur = couleur
+        self.yeux = yeux
 
     def to_dict(self):
         return self.__dict__
@@ -24,7 +27,7 @@ class Personne:
 
     def Maj_people(self, filename):
         people = self.load_from_json(filename)
-        pers = Personne(lien=self.lien or people.lien, first_name=self.first_name or people.first_name, last_name=self.last_name or people.last_name, age=self.age or people.age, genre=self.genre or people.genre, physique=self.physique or people.physique, anecdote=self.anecdote or people.anecdote)
+        pers = Personne(lien=self.lien or people.lien, first_name=self.first_name or people.first_name, last_name=self.last_name or people.last_name, age=self.age or people.age, genre=self.genre or people.genre, physique=self.physique or people.physique, anecdote=self.anecdote or people.anecdote, taille=self.taille or people.taille, couleur=self.couleur or people.couleur, yeux=self.yeux or people.yeux)
         json.dump(pers.to_dict(), open(f"{path_people}/{filename}", 'w'), indent=3)
 
     def Maj_feature(self, list_feat):
