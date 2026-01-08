@@ -3,3 +3,4 @@ empathetic_model/* filter=lfs diff=lfs merge=lfs -text
 *.bin filter=lfs diff=lfs merge=lfs -text
 Code/Projet[[:space:]]M2/empathetic_model/**/*.pt filter=lfs diff=lfs merge=lfs -text
 Code/Projet[[:space:]]M2/empathetic_model/**/*.bin filter=lfs diff=lfs merge=lfs -text
+Code/Projet[[:space:]]M2/empathetic_model/*.pt filter=lfs diff=lfs merge=lfs -text
