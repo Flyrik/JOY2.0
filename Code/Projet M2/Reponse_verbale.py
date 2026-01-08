@@ -3,6 +3,10 @@
 import tkinter as tk
 import random
 import datetime
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
 
 import Generation_parole as Gen
 
@@ -49,6 +53,9 @@ class Answer(tk.Frame):
                 self.answer += "."
             self.answer += " "
         # self.answer += self.Renseignement()
+
+        if self.answer.strip() == "":
+            self.answer = EmpatheticChatbot.reply(self.from_user)
 
         return self.answer
 
@@ -203,7 +210,45 @@ class Interaction(tk.Frame):
         else:
             text = "Comment alors ?"
         return text
+class EmpatheticChatbot:
+    data = None
+    vectorizer = None
+    utterance_vecs = None
 
+    @staticmethod
+    def load(csv_path="C:/Users/flori/Desktop/JOY2.0/Code/Projet M2/empatheticdialogues/train.csv"):
+        if EmpatheticChatbot.data is None:
+            # --- Charger le CSV ---
+            data = pd.read_csv(csv_path, engine="python", on_bad_lines="skip")
+
+            # --- Vérifier les colonnes ---
+            if 'response' in data.columns and 'utterance' in data.columns:
+                text_col = 'utterance'
+                reply_col = 'response'
+            elif 'context' in data.columns and 'utterance' in data.columns:
+                text_col = 'context'
+                reply_col = 'utterance'
+            else:
+                raise ValueError(f"Colonnes inconnues dans le CSV : {data.columns}")
+
+            # --- Garde juste les colonnes utiles et drop les lignes vides ---
+            data = data[[text_col, reply_col]].dropna()
+            data.columns = ['utterance', 'response']  # renommer pour uniformité
+
+            # --- TF-IDF ---
+            EmpatheticChatbot.vectorizer = TfidfVectorizer(max_features=5000)
+            EmpatheticChatbot.utterance_vecs = EmpatheticChatbot.vectorizer.fit_transform(data['utterance'])
+            EmpatheticChatbot.data = data
+
+    @staticmethod
+    def reply(user_input):
+        EmpatheticChatbot.load()
+
+        user_vec = EmpatheticChatbot.vectorizer.transform([user_input])
+        similarities = cosine_similarity(user_vec, EmpatheticChatbot.utterance_vecs)
+
+        best_idx = similarities.argmax()
+        return EmpatheticChatbot.data.iloc[best_idx]['response']
 
 if __name__ == '__main__':
     text = "Bonjour. Désormais, le lle de balle se prononcera comme le l de bal"
