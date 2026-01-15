@@ -22,6 +22,22 @@ class Application(tk.Tk):
         self.title("JOY te souhaite la bienvenue !")
         self.geometry(window_size)  # Résolution de l'écran du torse pour le test
         # self.state('zoomed') # Ouvre la fenêtre à la taille de l'écran
+        # --- THEME VISUEL (enfants) ---
+        self.configure(bg="#FFF6E9")  # fond doux
+        self.font_title = ("Arial", 22, "bold")
+        self.font_text = ("Arial", 16, "bold")
+        self.font_small = ("Arial", 13)
+
+        # optionnel: homogénéiser le look des boutons (tk.Button classique)
+        self.btn_style = {
+            "font": self.font_text,
+            "bd": 0,
+            "highlightthickness": 0,
+            "activebackground": "#FFE1A8",
+            "cursor": "hand2",
+            "padx": 14,
+            "pady": 10
+        }
 
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
@@ -75,7 +91,7 @@ class Application(tk.Tk):
         else:
             self.logo_img = "Source/Items/logo_notif_off.png"
         self.photo1 = tk.PhotoImage(file=self.logo_img)
-        self.butt_logo = tk.Button(self, image=self.photo1, borderwidth=0, command=self.update_vocal)
+        self.butt_logo = tk.Button(self, image=self.photo1, borderwidth=0, command=self.update_vocal, bg="#FFF6E9", activebackground="#FFF6E9")
         self.butt_logo.grid(row=0, column=0, sticky="n", padx=10, pady=10)
 
         self.salute_today = Reponse_verbale.Answer(self, "salut").Answer()
@@ -107,20 +123,20 @@ class Application(tk.Tk):
             self.frame_accueil.show_it()
 
         """ HEURE et DATE + Bouton navigation ROOT """
-        self.time_label = tk.Label(self, font=('Arial', 14), bg='gray')
+        self.time_label = tk.Label(self, font=self.font_small, bg="#FFE1A8", fg="#3A2E2A")
         self.time_label.grid(row=10, column=0, columnspan=2, sticky="se", padx=10, pady=10)
         self.update_time()
 
         self.photo0 = tk.PhotoImage(file="Source/Items/maison.png")
-        self.butt_accueil = tk.Button(self, image=self.photo0, borderwidth=0, command=self.frame_accueil.show_it)
+        self.butt_accueil = tk.Button(self, image=self.photo0, borderwidth=0, command=self.frame_accueil.show_it, bg="#FFF6E9", activebackground="#FFF6E9")
         self.butt_accueil.grid(row=0, column=0, sticky="nw", padx=10, pady=10)
 
         self.photo2 = tk.PhotoImage(file="Source/Items/engrenage.png")
-        self.butt_param = tk.Button(self, image=self.photo2, borderwidth=0, command=self.frame_parameters.show_it)
+        self.butt_param = tk.Button(self, image=self.photo2, borderwidth=0, command=self.frame_parameters.show_it, bg="#FFF6E9", activebackground="#FFF6E9")
         self.butt_param.grid(row=0, column=0, sticky="ne", padx=10, pady=10)
 
         self.photo3 = tk.PhotoImage(file="Source/Items/message.png")
-        self.butt_message = tk.Button(self, image=self.photo3, borderwidth=0, command=self.frame_discussion.show_it)
+        self.butt_message = tk.Button(self, image=self.photo3, borderwidth=0, command=self.frame_discussion.show_it, bg="#FFF6E9", activebackground="#FFF6E9")
         self.butt_message.grid(row=7, column=0, sticky="se", padx=10, pady=10)
 
         self.exception = None
@@ -157,35 +173,73 @@ class Application(tk.Tk):
 class FrameAccueil(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
-        self.configure(bg='#f0f0f0')
+        self.configure(bg="#FFF6E9")
         self.grid_columnconfigure(0, weight=1)
+        
 
-        # Titre de bienvenue
-        self.label1 = tk.Label(self, text=f"Bon retour {master.info_user.name}", font=('Arial', 18, 'bold'),
-                               bg='#f0f0f0', fg='#333')
-        self.label1.grid(pady=20)
+        # Titre
+        self.label1 = tk.Label(
+            self,
+            text=f"🌟 Coucou {master.info_user.name} ! 🌟",
+            font=("Arial", 24, "bold"),
+            bg="#FFF6E9",
+            fg="#2D2A32"
+        )
+        self.label1.grid(pady=(30, 10))
 
-        # Question sur l'état d'esprit
-        self.label2 = tk.Label(self, text="Comment vas-tu aujourd'hui ?", font=('Arial', 16), bg='#f0f0f0', fg='#555')
-        self.label2.grid(pady=20)
+        # Sous-titre
+        self.label2 = tk.Label(
+            self,
+            text="Comment tu te sens aujourd'hui ? 😊",
+            font=("Arial", 16, "bold"),
+            bg="#FFF6E9",
+            fg="#555"
+        )
+        self.label2.grid(pady=(0, 25))
 
-        # Bouton pour détecter l'humeur
-        self.butt_detect_mood = tk.Button(self, text="Voyons ton\nétat", font=('Arial', 16), width=15, height=2,
-                                          command=self.master.frame_detect.show_it, bg='#4CAF50', fg='white', bd=0,
-                                          highlightthickness=0, padx=10, pady=10, border=7)
-        self.butt_detect_mood.grid(row=2, column=0, pady=10)
+        # Bouton humeur
+        self.butt_detect_mood = tk.Button(
+            self,
+            text="🎭 Mon humeur",
+            command=self.master.frame_detect.show_it,
+            bg="#7ED957", fg="white",
+            activebackground="#6BCB4A",
+            font=("Arial", 18, "bold"),
+            bd=0, highlightthickness=0,
+            padx=20, pady=16,
+            cursor="hand2"
+        )
+        self.butt_detect_mood.grid(row=2, column=0, pady=10, ipadx=20, ipady=6)
 
-        # Bouton pour voir l'historique
-        self.butt_history = tk.Button(self, text="Voir ton\nhistorique", font=('Arial', 16), width=15, height=2,
-                                      command=self.master.frame_history.show_it, bg='#2196F3', fg='white', bd=0,
-                                      highlightthickness=0, padx=10, pady=10, border=7)
-        self.butt_history.grid(row=3, column=0, pady=10)
 
+        # Bouton historique
+        self.butt_history = tk.Button(
+            self,
+            text="📚 Mes souvenirs",
+            command=self.master.frame_history.show_it,
+            bg="#5DADE2", fg="white",
+            activebackground="#4F9ACB",
+            font=("Arial", 18, "bold"),
+            bd=0, highlightthickness=0,
+            padx=20, pady=16,
+            cursor="hand2"
+        )
+        self.butt_history.grid(row=3, column=0, pady=10, ipadx=20, ipady=6) 
+
+       # Bouton activités
         self.master.frame_activities.activities_by_emotion("Neutre")
-        self.butt_activities = tk.Button(self, text='Activités', font=('Arial', 16), width=15, height=2,
-                                         command=self.master.frame_activities.show_it, bg='#FFBB22', fg='white', bd=0,
-                                         highlightthickness=0, padx=10, pady=10, border=7)
-        self.butt_activities.grid(row=4, column=0, padx=10, pady=10)
+        self.butt_activities = tk.Button(
+            self,
+            text="🎮 Activités",
+            command=self.master.frame_activities.show_it,
+            bg="#FFB347", fg="white",
+            activebackground="#E89F3B",
+            font=("Arial", 18, "bold"),
+            bd=0, highlightthickness=0,
+            padx=20, pady=16,
+            cursor="hand2"
+        )
+        self.butt_activities.grid(row=4, column=0, pady=10, ipadx=20, ipady=6)
 
     """ NE JAMAIS REFAIRE CA ::: INTERDIT """
     # def history(self):
