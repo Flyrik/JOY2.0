@@ -1,4 +1,11 @@
-from gpiozero import Button
+try:
+    from gpiozero import Button
+    HAS_GPIOZERO = True
+except Exception:
+    Button = None
+    HAS_GPIOZERO = False
+    # gpiozero not available (e.g., running on Windows). Pulse reading will need to be simulated.
+
 import time
 import os
 import subprocess  # Pour exécuter des programmes externes
@@ -27,6 +34,12 @@ def read_pulse():
     last_time = current_time
     if interval > 0:
         bpm = 60 / interval
+
+# For systems without gpiozero, provide a simple simulator for testing
+if not HAS_GPIOZERO:
+    def simulate_pulse():
+        """Call this function to simulate a pulse (useful on Windows/dev machine)."""
+        read_pulse()
 
 # Attacher l'interruption gpiozero
 #sensor.when_pressed = read_pulse
