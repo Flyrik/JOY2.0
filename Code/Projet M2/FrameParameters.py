@@ -8,70 +8,130 @@ PathToUserFile = r"Source\user_data.json"
 class FrameParameters(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
-        self.configure(bg='#f0f0f0')  # Couleur de fond pour rendre la frame plus agréable
+        THEME_BG = "#FFF6E9"
+        TITLE_FG = "#2D2A32"
+        TEXT_FG = "#555"
+
+        self.configure(bg=THEME_BG)
         self.grid_columnconfigure(0, weight=1)
 
-        # Créer un Canvas pour le défilement
-        self.canvas = tk.Canvas(self, bg='#f0f0f0')
+        # Canvas scroll
+        self.canvas = tk.Canvas(self, bg=THEME_BG, highlightthickness=0)
         self.scrollbar = tk.Scrollbar(self, orient="vertical", command=self.canvas.yview)
-        self.scrollable_frame = tk.Frame(self.canvas, bg='#f0f0f0')
+        self.scrollable_frame = tk.Frame(self.canvas, bg=THEME_BG)
 
         # Configurer le Canvas et la Scrollbar
         self.scrollable_frame.bind("<Configure>", lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all")))
 
-        self.canvas.create_window((0, 0), window=self.scrollable_frame)
+        self.canvas_window = self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
+
         self.canvas.configure(yscrollcommand=self.scrollbar.set)
+        def _resize_scroll_frame(event):
+            # event.width = largeur visible du canvas
+            self.canvas.itemconfig(self.canvas_window, width=event.width)
+
+        self.canvas.bind("<Configure>", _resize_scroll_frame)
+
 
         # Ajouter le Canvas et la Scrollbar à la frame principale
         self.canvas.pack(side="left", fill="both", expand=True, padx=60)
         self.scrollbar.pack(side="right", fill="y")
 
         # Bouton pour effacer les données
-        self.label1 = tk.Label(self.scrollable_frame, text="Visage", font=('Arial', 18, 'bold'), bg='#F0F0F0',
-                               fg='#333')
-        self.label1.pack(expand=True, pady=5)
-        self.face_button = tk.Button(self.scrollable_frame, font=('Arial', 14), command=self.On_Off_face, fg='black',
-                                     bd=0, highlightthickness=0, padx=5, pady=5, border=7)
-        self.face_button.pack(expand=True, pady=5)
+        PADX = 28
 
-        self.start_on_ff = tk.Button(self.scrollable_frame, font=('Arial', 14), command=self.set_default_cam,
-                                     bg='#F0F0F0', bd=0, highlightthickness=0, padx=5, pady=5)
-        self.start_on_ff.pack(expand=True, pady=5)
+        def section_title(text):
+            lbl = tk.Label(
+                self.scrollable_frame,
+                text=text,
+                font=("Arial", 18, "bold"),
+                bg=THEME_BG,
+                fg=TITLE_FG
+            )
+            lbl.pack(fill="x", padx=PADX, pady=(18, 6), anchor="w")
+            return lbl
+
+        def card_button(text, command, bg, fg="white"):
+            btn = tk.Button(
+                self.scrollable_frame,
+                text=text,
+                command=command,
+                font=("Arial", 16, "bold"),
+                bg=bg, fg=fg,
+                activebackground=bg,
+                bd=0, highlightthickness=0,
+                padx=18, pady=14,
+                cursor="hand2"
+            )
+            btn.pack(fill="x", padx=PADX, pady=8)
+            return btn
+
+        def divider():
+            line = tk.Frame(self.scrollable_frame, bg="#E9DCCB", height=2)
+            line.pack(fill="x", padx=PADX, pady=12)
 
         # Bouton pour effacer les données
-        self.label2 = tk.Label(self.scrollable_frame, text="Suppression des données biométriques",
-                               font=('Arial', 18, 'bold'), bg='#f0f0f0', fg='#333')
-        self.label2.pack(expand=True, pady=5)
-        self.clear_button = tk.Button(self.scrollable_frame, text="Données personnelles", font=('Arial', 14),
-                                      command=self.clear_info_user, bg='#66DDFF', fg='black', bd=0,
-                                      highlightthickness=0, padx=5, pady=5, border=7)
-        self.clear_button.pack(expand=True, pady=5)
+        section_title("🙂 Visage")
 
-        self.clear_button_model = tk.Button(self.scrollable_frame, text="Model", font=('Arial', 14),
-                                            command=self.clear_model, bg='#66DDFF', fg='black', bd=0,
-                                            highlightthickness=0, padx=5, pady=5, border=7)
-        self.clear_button_model.pack(expand=True, pady=5)
+        self.face_button = card_button(
+            text="Activer / Désactiver 👀",
+            command=self.On_Off_face,
+            bg="#7ED957",
+            fg="white"
+        )
 
-        self.label3 = tk.Label(self.scrollable_frame, text="Suppression des historiques", font=('Arial', 18, 'bold'),
-                               bg='#f0f0f0', fg='#333')
-        self.label3.pack(expand=True, pady=5)
-        self.clear_button_history_feeling = tk.Button(self.scrollable_frame, text="Historique d'émotion",
-                                                      font=('Arial', 14), command=self.clear_history_feel, bg='#66DDFF',
-                                                      fg='black', bd=0, highlightthickness=0, padx=5, pady=5, border=7)
-        self.clear_button_history_feeling.pack(expand=True, pady=5)
+        self.start_on_ff = tk.Button(
+            self.scrollable_frame,
+            font=("Arial", 13, "bold"),
+            command=self.set_default_cam,
+            bg=THEME_BG,
+            fg=TEXT_FG,
+            bd=0,
+            cursor="hand2"
+        )
+        self.start_on_ff.pack(fill="x", padx=PADX, pady=(2, 4), anchor="w")
 
-        self.clear_button_history_conv = tk.Button(self.scrollable_frame, text="Historique de discussion",
-                                                   font=('Arial', 14), command=self.clear_history_conv, bg='#66DDFF',
-                                                   fg='black', bd=0, highlightthickness=0, padx=5, pady=5, border=7)
-        self.clear_button_history_conv.pack(expand=True, pady=5)
+        divider()
 
-        self.label4 = tk.Label(self.scrollable_frame, text="Réinitialisation complète", font=('Arial', 18, 'bold'),
-                               bg='#f0f0f0', fg='#333')
-        self.label4.pack(pady=5)
-        self.clear_button_all = tk.Button(self.scrollable_frame, text="Tous", font=('Arial', 14),
-                                          command=self.clear_all, bg='#66DDFF', fg='black', bd=0, highlightthickness=0,
-                                          padx=5, pady=5, border=7)
-        self.clear_button_all.pack(expand=True, pady=5)
+        section_title("🧹 Effacer mes infos")
+
+        self.clear_button = card_button(
+            text="🧒 Mon profil (données perso)",
+            command=self.clear_info_user,
+            bg="#5DADE2"
+        )
+
+        self.clear_button_model = card_button(
+            text="🤖 Modèle (IA)",
+            command=self.clear_model,
+            bg="#5DADE2"
+        )
+
+        divider()
+
+        section_title("📜 Effacer l’historique")
+
+        self.clear_button_history_feeling = card_button(
+            text="🎭 Émotions",
+            command=self.clear_history_feel,
+            bg="#FFB347"
+        )
+
+        self.clear_button_history_conv = card_button(
+            text="💬 Discussions",
+            command=self.clear_history_conv,
+            bg="#FFB347"
+        )
+
+        divider()
+
+        section_title("🚨 Remise à zéro")
+
+        self.clear_button_all = card_button(
+            text="🔁 Tout réinitialiser",
+            command=self.clear_all,
+            bg="#FF6B6B"
+        )
 
         self.set_start_on_ff_button()
         self.exception = None
