@@ -1,0 +1,76 @@
+import torch
+import re
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from peft import PeftModel
+
+BASE_MODEL_NAME = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+ADAPTER_DIR = "/content/tinyllama_empathetic_lora_v2/final_adapter"
+
+# Load tokenizer
+tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL_NAME, use_fast=True)
+tokenizer.pad_token = tokenizer.eos_token
+
+# Load base model (NO bitsandbytes)
+base_model = AutoModelForCausalLM.from_pretrained(
+    BASE_MODEL_NAME,
+    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
+    device_map="auto"
+)
+
+# Load LoRA adapter
+model = PeftModel.from_pretrained(base_model, ADAPTER_DIR)
+model.eval()
+
+# Optional: small memory (keeps last turns)
+history = []
+
+def bot_reply(user_text: str) -> str:
+    global history
+
+    history.append(("user", user_text))
+    history = history[-4:]  # keep last 4 messages
+
+    # Build prompt with history
+    prompt = "<|system|>\nYou are a kind and empathetic assistant. Stay on topic and answer briefly.\n"
+    for role, msg in history:
+        if role == "user":
+            prompt += f"<|user|>\n{msg}\n"
+        else:
+            prompt += f"<|assistant|>\n{msg}\n"
+    prompt += "<|assistant|>\n"
+
+    inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=512).to(model.device)
+
+    with torch.no_grad():
+        out = model.generate(
+            **inputs,
+            max_new_tokens=80,
+            do_sample=True,
+            temperature=0.7,
+            top_p=0.9,
+            repetition_penalty=1.15,
+            no_repeat_ngram_size=3,
+            eos_token_id=tokenizer.eos_token_id,
+            pad_token_id=tokenizer.eos_token_id,
+        )
+
+    decoded = tokenizer.decode(out[0], skip_special_tokens=True)
+
+    # Keep only assistant last part
+    if "<|assistant|>" in decoded:
+        decoded = decoded.split("<|assistant|>")[-1]
+
+    decoded = re.split(r"<\|user\|>|<\|system\|>", decoded)[0]
+    decoded = re.sub(r"\s+", " ", decoded).strip()
+
+    history.append(("assistant", decoded))
+    return decoded
+
+
+print("\n--- TinyLlama empathic chat (type 'quit' to stop) ---")
+while True:
+    msg = input("YOU: ")
+    if msg.lower() in ["quit", "exit"]:
+        print("BOT: Bye!")
+        break
+    print("BOT:", bot_reply(msg))
