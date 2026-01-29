@@ -154,16 +154,17 @@ eval_ds.set_format(type="torch")
 # =========================
 args = TrainingArguments(
     output_dir=OUT_DIR,
-    per_device_train_batch_size=2,
-    gradient_accumulation_steps=8,
-    num_train_epochs=3,   # 🔥 important
-    learning_rate=1e-4,   # 🔥 lower = calmer
+    per_device_train_batch_size=1,  # CPU = batch petit
+    gradient_accumulation_steps=8,  # compense le batch
+    num_train_epochs=3,
+    learning_rate=1e-4,
     warmup_ratio=0.05,
     logging_steps=50,
     save_steps=500,
-    fp16=True,
+    fp16=False,          # CPU ne supporte pas fp16
     report_to="none",
 )
+
 
 trainer = Trainer(
     model=model,
