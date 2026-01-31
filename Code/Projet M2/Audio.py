@@ -42,22 +42,38 @@ class Jouer(tk.Frame):
         return threading.Thread(target=self.Play(sound_path)).start()
 
     def Exe(self):
+        # Lecture du fichier face.txt
         new_script = open(self.face_path).readlines()
+
+        # 🔒 Sécurisation : garantir au moins 4 lignes
+        while len(new_script) <= 3:
+            new_script.append("\n")
+
         index_file = 0
-        for i in range(len(self.master.syllables)):
-            syb = self.master.syllables[i]
-            new_script[3] = f"on {syb}"
+
+        for syb in self.master.syllables:
+            # Activer la bouche (ON + syllabe)
+            new_script[3] = f"on {syb}\n"
             open(self.face_path, 'w').writelines(new_script)
+
             if syb in syllables:
                 self.Parler(f"sound{index_file}.wav")
                 index_file += 1
             elif syb == "pause_courte":
-                time.sleep(.25)
+                time.sleep(0.25)
             else:
-                time.sleep(.5)
+                time.sleep(0.5)
+
+        # Fin de parole → bouche OFF
         self.Parler("vide.wav")
+
         new_script = open(self.face_path).readlines()
-        new_script[3] = "off"
+
+        # 🔒 RE-sécurisation AVANT index 3
+        while len(new_script) <= 3:
+            new_script.append("\n")
+
+        new_script[3] = "off\n"
         open(self.face_path, 'w').writelines(new_script)
 
 
