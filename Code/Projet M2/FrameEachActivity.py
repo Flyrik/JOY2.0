@@ -15,7 +15,7 @@ class Activity(tk.Frame):
         self.label2 = None
         self.label3 = None
         self.video = None
-        self.configure(bg='#f0f0f0')  # Couleur de fond pour rendre la frame plus agréable
+        self.configure(bg='#FFF6E9')  # Couleur de fond pour rendre la frame plus agréable
         self.grid_columnconfigure(0, weight=1)
         self.label1_num, self.label3_num = 0, 0
 
@@ -137,11 +137,11 @@ class Activity(tk.Frame):
 
         else:
 
-            self.label1 = tk.Label(self, text="Conseil du jour:", font=('Arial', 18, 'bold'), bg='#f0f0f0', fg='#333')
+            self.label1 = tk.Label(self, text="Conseil du jour:", font=('Arial', 18, 'bold'), bg='#FFF6E9', fg='#333')
             self.label1.pack()
 
             rnd = random.randint(0, len(self.conseils)-1)
-            self.label2 = tk.Label(self, text=self.conseils[rnd], font=('Arial', 12), bg='#f0f0f0', fg='#333',
+            self.label2 = tk.Label(self, text=self.conseils[rnd], font=('Arial', 12), bg='#FFF6E9', fg='#333',
                                    justify='center', wraplength=550)
             self.label2.pack()
             self.label2.place(x=20, y=50)
@@ -166,7 +166,7 @@ class Activity(tk.Frame):
 
     def vid(self, label, path_vid):
 
-        self.label3 = tk.Label(self, text=label, font=('Arial', 18, 'bold'), bg='#f0f0f0', fg='#333')
+        self.label3 = tk.Label(self, text=label, font=('Arial', 18, 'bold'), bg='#FFF6E9', fg='#333')
         self.label3.pack(padx=20, pady=10)
 
         self.video = TkinterVideo(self.master)

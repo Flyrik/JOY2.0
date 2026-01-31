@@ -6,14 +6,14 @@ import os
 class FrameActivities(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
-        self.configure(bg='#f0f0f0')  # Couleur de fond pour rendre la frame plus agréable
+        self.configure(bg='#FFF6E9')  # Couleur de fond pour rendre la frame plus agréable
 
         # Configurer les colonnes pour centrer les widgets
         #self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
         # Titre de la section
-        self.label1 = tk.Label(self, text="Que veux-tu faire ?", font=('Arial', 18, 'bold'), bg='#f0f0f0', fg='#333')
+        self.label1 = tk.Label(self, text="Que veux-tu faire ?", font=('Arial', 18, 'bold'), bg='#FFF6E9', fg='#333')
         self.label1.grid(row=0, column=0, sticky="ew")
 
     def activities_by_emotion(self, emotion):
@@ -39,13 +39,48 @@ class FrameActivities(tk.Frame):
             self.act3 = "Vidéo de motivation"
 
         # Boutons pour les activités
-        self.butt_1 = tk.Button(self, text=self.act1, font=('Arial', 14), width=15, height=2, command=lambda: self.show_act(self.act1), bg='#2196F3', fg='white', bd=0,highlightthickness=0, padx=10, pady=10, border=7)
+        self.butt_1 = tk.Button(
+           self,
+    text=self.act1,
+    command=lambda: self.show_act(self.act1),
+    bg="#2196F3",              # bleu original
+    fg="white",
+    activebackground="#1976D2",  # teinte un peu plus foncée au clic
+    font=("Arial", 14, "bold"),  # police bold pour correspondre au style
+    bd=0,
+    highlightthickness=0,
+    padx=20,
+    pady=16,
+    cursor="hand2",
+    )
         self.butt_1.grid(row=1, column=0, pady=10)
 
-        self.butt_2 = tk.Button(self, text=self.act2, font=('Arial', 14), width=15, height=2, command=lambda: self.show_act(self.act2), bg='#4CAF50', fg='white', bd=0, highlightthickness=0, padx=10, pady=10, border=7)
+        self.butt_2 = tk.Button(self,
+    text=self.act2,
+    command=lambda: self.show_act(self.act2),
+    bg="#4CAF50",               # vert original
+    fg="white",
+    activebackground="#43A047", # teinte plus foncée au clic
+    font=("Arial", 14, "bold"), # police bold pour uniformité
+    bd=0,
+    highlightthickness=0,
+    padx=20,
+    pady=16,
+    cursor="hand2",)
         self.butt_2.grid(row=2, column=0, pady=10)
 
-        self.butt_3 = tk.Button(self, text=self.act3, font=('Arial', 14), width=15, height=2, command=lambda: self.show_act(self.act3), bg='#FF5722', fg='white', bd=0, highlightthickness=0, padx=10, pady=10, border=7)
+        self.butt_3 = tk.Button(self,
+    text=self.act3,
+    command=lambda: self.show_act(self.act3),
+    bg="#FF5722",               # orange original
+    fg="white",
+    activebackground="#E64A19", # teinte plus foncée au clic
+    font=("Arial", 14, "bold"), # police bold pour uniformité
+    bd=0,
+    highlightthickness=0,
+    padx=20,
+    pady=16,
+    cursor="hand2",)
         self.butt_3.grid(row=3, column=0, pady=10)
 
     def show_act(self, act):

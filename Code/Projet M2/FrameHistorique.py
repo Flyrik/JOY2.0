@@ -100,15 +100,15 @@ class History():
 class FrameHistorique(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
-        self.configure(bg='#f0f0f0')  # Couleur de fond pour rendre la frame plus agréable
+        self.configure(bg='#FFF6E9')  # Couleur de fond pour rendre la frame plus agréable
         self.history = History()
 
         # Titre de l'historique
-        self.label = tk.Label(self, text="Historique des émotions et BPM", font=('Arial', 18, 'bold'), bg='#f0f0f0', fg='#333')
+        self.label = tk.Label(self, text="Historique des émotions et BPM", font=('Arial', 18, 'bold'), bg='#FFF6E9', fg='#333')
         self.label.pack(pady=20)
 
         # Zone de texte pour afficher l'historique
-        self.text_area = scrolledtext.ScrolledText(self, wrap=tk.WORD, width=90, height=20, font=("Arial", 12), bd=2, relief='sunken')
+        self.text_area = scrolledtext.ScrolledText(self, wrap=tk.WORD, width=90, height=20, font=("Arial", 12), bd=2, relief='sunken', bg='#FFF6E9')
         self.text_area.pack(pady=10, padx=20)
 
     # Affiche les 15 dernières lignes de l'historique 
