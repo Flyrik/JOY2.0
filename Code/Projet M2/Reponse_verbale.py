@@ -216,7 +216,7 @@ class EmpatheticChatbot:
     utterance_vecs = None
 
     @staticmethod
-    def load(csv_path="C:/Users/flori/Desktop/JOY2.0/Code/Projet M2/empatheticdialogues/train.csv"):
+    def load(csv_path="empatheticdialogues/train.csv"):
         if EmpatheticChatbot.data is None:
             # --- Charger le CSV ---
             data = pd.read_csv(csv_path, engine="python", on_bad_lines="skip")

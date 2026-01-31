@@ -21,7 +21,7 @@ for conv_id, g in df.groupby("conv_id"):
 prepared = pd.DataFrame(pairs, columns=["utterance", "response"])
 prepared.to_csv(OUT_PATH, index=False)
 
-print("✅ Prepared file saved:", OUT_PATH)
-print("✅ Nb pairs:", len(prepared))
+print("Prepared file saved:", OUT_PATH)
+print("Nb pairs:", len(prepared))
 
 prepared.head()

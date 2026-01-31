@@ -49,7 +49,7 @@ df = df[~df["response"].str.lower().str.startswith(
 
 df = df.reset_index(drop=True)
 
-print("✅ Pairs after filtering:", len(df))
+print("Pairs after filtering:", len(df))
 
 # =========================
 # ADD MANUAL COMMON CASES
@@ -67,7 +67,7 @@ extras = [
 extra_df = pd.DataFrame(extras, columns=["utterance", "response"])
 df = pd.concat([df, extra_df], ignore_index=True)
 
-print("✅ Added common phrases")
+print("Added common phrases")
 
 # =========================
 # MODEL
@@ -179,4 +179,4 @@ trainer.train()
 trainer.model.save_pretrained(f"{OUT_DIR}/final_adapter")
 tokenizer.save_pretrained(f"{OUT_DIR}/final_adapter")
 
-print("✅ Training v2 finished")
+print("Training v2 finished")
