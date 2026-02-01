@@ -20,26 +20,45 @@ class FrameDiscussion(tk.Frame):
     def __init__(self, master):
         self.stt = WhisperSTT(language="en", record_seconds=3)
         super().__init__(master)
-        self.configure(bg='#f0f0f0')
-        self.columnconfigure(0, weight=1)
+        self.configure(bg='#FFF6E9')
 
+        # --- CONFIGURATION COLONNES ---
+        self.columnconfigure(0, weight=50)  # colonne vide à gauche
+        self.columnconfigure(1, weight=50)  # message_area
+        self.columnconfigure(2, weight=0)  # audio_butt
+        self.columnconfigure(3, weight=0)  # envoi_butt
+        self.columnconfigure(4, weight=50)  # colonne vide à droite
+
+        # --- CONFIGURATION LIGNES ---
+        self.rowconfigure(0, weight=7)  # text_area grandit avec la fenêtre
+        self.rowconfigure(1, weight=3)  # ligne de saisie reste fixe
+
+        # --- ZONE DE DISCUSSION ---
         self.text_area = scrolledtext.ScrolledText(
             self,
             wrap=tk.WORD,
-            width=90,
-            height=20,
             font=("Arial", 12),
             bd=2,
             relief='sunken'
         )
-        self.text_area.grid(row=0, pady=10, padx=20)
+        # s'étend sur toutes les colonnes pour prendre tout l'espace
+        self.text_area.grid(row=0, column=0, columnspan=5, sticky="nsew", padx=20, pady=10)
 
-        self.message_area = tk.Text(self, width=60, height=1, font=("Arial", 12), bd=2, relief='sunken')
-        self.message_area.grid(row=1, sticky="w", padx=10, pady=10)
+        # --- BARRE DE SAISIE ---
+        self.message_area = tk.Text(
+            self,
+            width=30,
+            height=1,
+            font=("Arial", 12),
+            bd=2,
+            relief='sunken'
+        )
+        self.message_area.grid(row=1, column=1, sticky="ew", padx=5, pady=10)
 
+        # --- BOUTONS AUDIO ET ENVOI ---
         self.photo_audio = tk.PhotoImage(file="Source/Items/audio_off.png")
         self.audio_butt = tk.Button(self, image=self.photo_audio, borderwidth=0, command=lambda: self.Turn_on_off())
-        self.audio_butt.grid(row=1, column=1, padx=10, pady=10)
+        self.audio_butt.grid(row=1, column=2, padx=5, pady=10)
 
         self.photo_envoi = tk.PhotoImage(file="Source/Items/envoyer.png")
         self.envoi_butt = tk.Button(
@@ -49,7 +68,7 @@ class FrameDiscussion(tk.Frame):
             bg="#77DDFF",
             command=lambda: self.Type()
         )
-        self.envoi_butt.grid(row=1, column=2, padx=10, pady=10)
+        self.envoi_butt.grid(row=1, column=3, padx=5, pady=10)
 
         self.last_mess = []
         self.answer = ""

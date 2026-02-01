@@ -125,22 +125,46 @@ class FrameDetectingMood(tk.Frame):
                 if self.emotion_count >= 1:
                     if emotion in self.negative_emotions + self.positive_emotions:
                         
-                        self.butt_1.grid()
-                        self.butt_2.grid()
-                        self.label2.grid()
-                        if emotion == "sad":
+                        #self.butt_1.grid() AFFICHE LES BOUTONS YES/NO
+                        #self.butt_2.grid()
+                        #self.label2.grid()
+                        if emotion == "angry":
                             self.sos_label.config(
-                                text="Vous semblez triste ces derniers temps. "
-                                     "Peut-être devriez-vous penser à consulter.\n"
-                                     "Contacter SOS Amitié au 01 42 96 26 26\n"
-                                     "Ou rendez-vous sur leur site et discuter dans un chat : "
-                                     "https://www.sosamitieidf.asso.fr/"
+                                text="Tu sembles en colère. Respire profondément, fais une pause ou écris ce qui te frustre."
+                            )
+
+                        elif emotion == "disgust":
+                            self.sos_label.config(
+                                text="Tu ressens du dégoût. Éloigne-toi un moment de ce qui te dérange et respire calmement."
+                            )
+
+                        elif emotion == "fear":
+                            self.sos_label.config(
+                                text="On dirait que tu ressens de la peur. Respire profondément et concentre-toi sur quelque chose de rassurant."
                             )
 
                         elif emotion == "happy":
-                             self.sos_label.config(
-                                text="Ca fait plaisir que tu sois aussi heureux ! Continue comme ça :)"
+                            self.sos_label.config(
+                                text="Ça fait plaisir de te voir heureux ! Continue comme ça :)"
                             )
+
+                        elif emotion == "sad":
+                            self.sos_label.config(
+                                text="Tu sembles triste. Prends un moment pour toi : écris tes pensées, fais une activité que tu aimes, écoute de la musique qui te réconforte, ou parle à tes parents\n"
+                                    
+                            )
+
+                        elif emotion == "surprise":
+                            self.sos_label.config(
+                                text="Tu sembles surpris ! Prends un moment pour respirer et analyser la situation calmement."
+                            )
+
+                        elif emotion == "neutral":
+                            self.sos_label.config(
+                                text="Tu es dans un état neutre. Profite-en pour te détendre ou faire une activité qui te plaît."
+                            )
+
+                        
                         
                     else:
                         self.label2.grid_remove()
