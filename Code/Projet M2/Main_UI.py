@@ -161,8 +161,8 @@ class Application(tk.Tk):
     # !!! Veuillez tenir à jour la liste suivante sinon on crée un dico ou une liste à parcourir
     def hide_all(self):
         for i in [self.frame_accueil, self.frame_profil_user, self.frame_history, self.frame_feeling_mood,
-                  self.frame_detect, self.frame_activities, self.frame_parameters, self.frame_each_activity,
-                  self.frame_discussion]:
+                  self.frame_detect, self.frame_activities, self.frame_parameters, 
+                  self.frame_discussion, self.frame_each_activity]:
             try:
                 i.hide_it()
             except Exception as e:
