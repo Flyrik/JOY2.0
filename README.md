@@ -70,3 +70,7 @@ JOY agit comme un **ami bienveillant** : il écoute, discute, rassure et propose
 ---
 
 **Besoin de conseils, besoin de s’amuser, besoin de JOY 💛**
+![image](https://github.com/user-attachments/assets/7e00b35c-ebea-4815-a26f-03fb80a017ec)
+
+![image2](https://github.com/user-attachments/assets/17c7d7b9-220b-490b-a966-7e1802cfd12b)
+
